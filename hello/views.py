@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from hello.serializers import AppDownloadSerializer
+from rest_framework import generics
 
 import datetime
 
@@ -9,6 +11,11 @@ from .models import *
 def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "index.html")
+
+
+class AppDownloadListCreate(generics.ListCreateAPIView):
+    queryset = AppDownload.objects.all()
+    serializer_class = AppDownloadSerializer
 
 
 def dashboard(request):
@@ -26,6 +33,7 @@ def create_download(request):
 	app_download.save()
 
 	return render(request, "dashboard.html")
+
 
 def db(request):
 
