@@ -36,7 +36,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">2019 MOBILE APP DOWNLOADS</a>
+            <a class="navbar-brand" href="#pablo">2019 DOWNLOADS</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -44,7 +44,16 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  EXIT
+                  <p>
+                    <span class="d-lg-none d-md-block">Logout</span>
+                  </p>
+                </a>
+              </li>
+            </ul>
             
           </div>
         </div>
@@ -58,19 +67,8 @@
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Global Sales</h5>
-                <h4 class="card-title">Shipped Products</h4>
-                <div class="dropdown">
-                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons loader_gear"></i>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item text-danger" href="#">Remove Data</a>
-                  </div>
-                </div>
+                <h5 class="card-category">2019 Downloads</h5>
+                <h4 class="card-title">By country</h4>
               </div>
               <div class="card-body">
                 <div class="chart-area">
@@ -87,19 +85,8 @@
           <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">2018 Sales</h5>
-                <h4 class="card-title">All products</h4>
-                <div class="dropdown">
-                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons loader_gear"></i>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item text-danger" href="#">Remove Data</a>
-                  </div>
-                </div>
+                <h5 class="card-category">2019 Downloads</h5>
+                <h4 class="card-title">By time of day</h4>
               </div>
               <div class="card-body">
                 <div class="chart-area">
@@ -116,8 +103,8 @@
           <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Email Statistics</h5>
-                <h4 class="card-title">24 Hours Performance</h4>
+                <h5 class="card-category">2019 Downloads</h5>
+                <h4 class="card-title">Alert VS Mate</h4>
               </div>
               <div class="card-body">
                 <div class="chart-area">
@@ -133,43 +120,42 @@
           </div>
         </div>
         <div class="row">
-          
           <div class="col-md-10" style="margin: auto;">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-category">All Persons List</h5>
-                <h4 class="card-title"> Employees Stats</h4>
+                <h5 class="card-category">Live Feed</h5>
+                <h4 class="card-title"> Latest Downloads</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Name
+                        App
                       </th>
                       <th>
-                        Country
+                        Date
                       </th>
                       <th>
-                        City
+                        Time
                       </th>
                       <th class="text-right">
-                        Salary
+                        Location
                       </th>
                     </thead>
                     <tbody>
                       <tr>
                         <td>
-                          Dakota Rice
+                          IOS ALERT
                         </td>
                         <td>
-                          Niger
+                          23/7/19
                         </td>
                         <td>
-                          Oud-Turnhout
+                          15:33
                         </td>
                         <td class="text-right">
-                          $36,738
+                          Spain/Europe
                         </td>
                       </tr>
                       <tr>
@@ -232,6 +218,9 @@
                   </table>
                 </div>
               </div>
+                <div class="stats" style="margin: 20px;">
+                  <i style="color: grey;" class="now-ui-icons arrows-1_refresh-69"></i> <span style="color: grey;">Just Updated</span>
+                </div>
             </div>
           </div>
         </div>
@@ -259,10 +248,26 @@
   <script src="{% static 'js/now-ui-dashboard.min.js?v=1.3.0' %}" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="{% static 'demo/demo.js' %}"></script>
+
   <script>
     $(document).ready(function() {
+      
       // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
+      charts = demo.initDashboardPageCharts();
+
+      console.log(charts)
+
+      mainChart = charts.mainChart
+      //mainChart.data.datasets[0].data[0] = 300
+      //mainChart.update()
+
+      countryChart = charts.countryChart
+      //countryChart.data.datasets[0].data[0] = 300
+      //countryChart.update()
+
+      timeChart = charts.timeChart
+      //timeChart.data.datasets[0].data[0] = 300
+      //timeChart.update()
 
     });
   </script>
