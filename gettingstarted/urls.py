@@ -15,8 +15,7 @@ import hello.views
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
 urlpatterns = [
-    path('', include('hello.urls')),
-    path('', hello.views.index, name="index"),
+    path("", hello.views.index, name="index"),
     path("dashboard/", hello.views.dashboard, name="dashboard"),
     path("create_download/", hello.views.create_download, name="create_download"),
     path("db/", hello.views.db, name="db"),
