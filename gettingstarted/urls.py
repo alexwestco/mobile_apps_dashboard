@@ -11,4 +11,5 @@ urlpatterns = [
     path("dashboard/", hello.views.dashboard, name="dashboard"),
     path("seed_database/", hello.views.seed_database, name="seed_database"),
     path("admin/", admin.site.urls),
+    path('api/app_download/', hello.views.AppDownloadListCreate.as_view()),
 ]

@@ -86,7 +86,7 @@
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-category">2019 Downloads</h5>
-                <h4 class="card-title">By time of day</h4>
+                <h4 class="card-title">By time of day (UTC)</h4>
               </div>
               <div class="card-body">
                 <div class="chart-area">
@@ -128,7 +128,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" id="live_feed">
                     <thead class=" text-primary">
                       <th>
                         App
@@ -139,81 +139,12 @@
                       <th>
                         Time
                       </th>
-                      <th class="text-right">
+                      <th>
                         Location
                       </th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          IOS ALERT
-                        </td>
-                        <td>
-                          23/7/19
-                        </td>
-                        <td>
-                          15:33
-                        </td>
-                        <td class="text-right">
-                          Spain/Europe
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-right">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-right">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Doris Greene
-                        </td>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-right">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Mason Porter
-                        </td>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-right">
-                          $78,615
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -251,23 +182,122 @@
 
   <script>
     $(document).ready(function() {
-      
+
       // Javascript method's body can be found in assets/js/demos.js
       charts = demo.initDashboardPageCharts();
 
-      console.log(charts)
+      //console.log(charts)
 
-      mainChart = charts.mainChart
-      //mainChart.data.datasets[0].data[0] = 300
-      //mainChart.update()
+      // Run every 10 seconds
+      
+      // GET request to server, fetch all the downloads
+      $.get( "/api/app_download", function( data ) {
+        
+        // Arrays that will keep the number of downloads
+        number_of_ios_alert_downloads_per_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        number_of_ios_mate_downloads_per_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        total_number_of_downloads_per_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-      countryChart = charts.countryChart
-      //countryChart.data.datasets[0].data[0] = 300
-      //countryChart.update()
+        number_of_downloads_per_hour = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-      timeChart = charts.timeChart
-      //timeChart.data.datasets[0].data[0] = 300
-      //timeChart.update()
+        var countries = {};
+
+        for(i =0; i<data.length; i++){
+
+          // Main line chart and the 'Alert VS Mate' line chart
+          month = data[i]['downloaded_at'].split('-')[1]
+          index = month - 1
+          if(data[i]['app_id'] == 'IOS_ALERT'){
+            number_of_ios_alert_downloads_per_month[index]++;
+          }else{
+            number_of_ios_mate_downloads_per_month[index]++;
+          }
+          total_number_of_downloads_per_month[index]++;
+
+          // For the 'By time of day' chart
+          hour = data[i]['downloaded_at'].split('T')[1].substring(0, 2)/1
+          number_of_downloads_per_hour[hour]++;
+
+          // For the 'By Country/Continent' chart
+          country = data[i]['country']
+          if(countries[country] == null){
+            countries[country] = 1
+          }else{
+            countries[country] = countries[country] + 1
+          }
+
+          other_downloads = 0
+          number_of_downloads_per_country = []
+          labels_of_countries = []
+          colors_of_countries = []
+          colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+      '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+      '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+      '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+      '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+      '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+      '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+      '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+      '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+      '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+          
+
+          // For whatever is under 5% on it's own, add it to Other
+          j=0
+          for(var downloads in countries) {
+            var value = countries[downloads];
+
+            // if the downloads are more that 3% of the total downloads
+            if(value > (data.length/33)){
+              number_of_downloads_per_country.push(value)
+              labels_of_countries.push(downloads)
+              colors_of_countries.push(colors[j])
+              j++;
+            }else{
+              other_downloads += value
+            }
+
+          }
+
+          number_of_downloads_per_country.push(other_downloads)
+          labels_of_countries.push('Other')
+
+
+          // For the live feed, all we need is the last five downloads
+          latest_downloads = []
+          if(i<5){
+            html = '<tr style="color:grey"><td>' + data[i]['app_id'] + '</td><td>' + data[i]['downloaded_at'].split('T')[0] + '</td><td>' + data[i]['downloaded_at'].split('T')[1] + '</td><td>' + data[i]['country'] + '/' + data[i]['continent'] + '</td></tr>';
+
+            latest_downloads.push(html)
+            $('#live_feed tr:last').after(html);
+          }
+
+        }
+
+        // Main line chart
+        mainChart = charts.mainChart
+        mainChart.data.datasets[0].data = total_number_of_downloads_per_month
+        mainChart.update()
+
+        // 'Alert VS Mate' chart
+        doubleLineChart = charts.doubleLineChart
+        doubleLineChart.data.datasets[0].data = number_of_ios_alert_downloads_per_month
+        doubleLineChart.data.datasets[1].data = number_of_ios_mate_downloads_per_month
+        doubleLineChart.update()
+
+        // 'By time of day' chart
+        timeChart = charts.timeChart
+        timeChart.data.datasets[0].data = number_of_downloads_per_hour
+        timeChart.update()
+
+        // 'By country' chart
+        countryChart = charts.countryChart
+        countryChart.data.datasets[0].data = number_of_downloads_per_country
+        countryChart.data.datasets[0].backgroundColor = colors_of_countries
+        countryChart.data.labels = labels_of_countries
+        countryChart.update()
+
+      });
 
     });
   </script>

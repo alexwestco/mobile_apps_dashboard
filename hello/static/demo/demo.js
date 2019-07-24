@@ -1,109 +1,4 @@
 demo = {
-  initPickColor: function() {
-    $('.pick-class-label').click(function() {
-      var new_class = $(this).attr('new-class');
-      var old_class = $('#display-buttons').attr('data-class');
-      var display_div = $('#display-buttons');
-      if (display_div.length) {
-        var display_buttons = display_div.find('.btn');
-        display_buttons.removeClass(old_class);
-        display_buttons.addClass(new_class);
-        display_div.attr('data-class', new_class);
-      }
-    });
-  },
-
-  initDocChart: function() {
-    chartColor = "#FFFFFF";
-
-    // General configuration for the charts with Line gradientStroke
-    gradientChartOptionsConfiguration = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      tooltips: {
-        bodySpacing: 4,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest",
-        xPadding: 10,
-        yPadding: 10,
-        caretPadding: 10
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          display: 0,
-          gridLines: 0,
-          ticks: {
-            display: false
-          },
-          gridLines: {
-            zeroLineColor: "transparent",
-            drawTicks: false,
-            display: false,
-            drawBorder: false
-          }
-        }],
-        xAxes: [{
-          display: 0,
-          gridLines: 0,
-          ticks: {
-            display: false
-          },
-          gridLines: {
-            zeroLineColor: "transparent",
-            drawTicks: false,
-            display: false,
-            drawBorder: false
-          }
-        }]
-      },
-      layout: {
-        padding: {
-          left: 0,
-          right: 0,
-          top: 15,
-          bottom: 15
-        }
-      }
-    };
-
-    ctx = document.getElementById('lineChartExample').getContext("2d");
-
-    gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-    gradientStroke.addColorStop(0, '#80b6f4');
-    gradientStroke.addColorStop(1, chartColor);
-
-    gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-    gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-    gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
-
-    var lastChart = new Chart(ctx, {
-      type: 'line',
-      responsive: true,
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Active Users",
-          borderColor: "#f96332",
-          pointBorderColor: "#FFF",
-          pointBackgroundColor: "#f96332",
-          pointBorderWidth: 2,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
-          pointRadius: 4,
-          fill: true,
-          backgroundColor: gradientFill,
-          borderWidth: 2,
-          data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
-        }]
-      },
-      options: gradientChartOptionsConfiguration
-    });
-  },
-
   initDashboardPageCharts: function() {
 
     chartColor = "#FFFFFF";
@@ -224,7 +119,7 @@ demo = {
       data: {
         labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
         datasets: [{
-          label: "IOS_ALERT",
+          label: "Downloads",
           borderColor: chartColor,
           pointBorderColor: chartColor,
           pointBackgroundColor: "#1e3d60",
@@ -327,7 +222,7 @@ demo = {
           "#e74c3c",
           "#34495e"
         ],
-        data: [12, 19, 3, 17, 28, 24, 7]
+        data: [12, 19, 3, 17, 28, 24, 7, 98, 99, 87]
         }]
       },
       options: gradientChartOptionsConfiguration
@@ -348,7 +243,7 @@ demo = {
       type: 'bar',
       responsive: true,
       data: {
-        labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+        labels: ["00:00,", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00,", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00,", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
         datasets: [{
           label: "Downloads",
           borderColor: "#18ce0f",
@@ -378,7 +273,7 @@ demo = {
       data: {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       datasets: [{
-          label: "Stock A",
+          label: "IOS_ALERT",
           fill: false,
           lineTension: 0.1,
           backgroundColor: "rgba(225,0,0,0.4)",
@@ -391,8 +286,6 @@ demo = {
           pointBackgroundColor: "white",
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "yellow",
-          pointHoverBorderColor: "brown",
           pointHoverBorderWidth: 2,
           pointRadius: 4,
           pointHitRadius: 10,
@@ -400,7 +293,7 @@ demo = {
           data: [65, 59, 80, 81, 56, 55, 40, 34,60,55,30,78],
           spanGaps: true,
         }, {
-          label: "Stock B",
+          label: "IOS_MATE",
           fill: true,
           lineTension: 0.1,
           backgroundColor: "rgba(167,105,0,0.4)",
@@ -413,8 +306,6 @@ demo = {
           pointBackgroundColor: "black",
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "brown",
-          pointHoverBorderColor: "yellow",
           pointHoverBorderWidth: 2,
           pointRadius: 4,
           pointHitRadius: 10,
@@ -473,13 +364,14 @@ demo = {
       }
     };
 
-    var viewsChart = new Chart(e, a);
+    var doubleLineChart = new Chart(e, a);
 
     // Return all charts
     return {
         mainChart: mainChart,
         countryChart: countryChart,
         timeChart: timeChart,
+        doubleLineChart: doubleLineChart,
     };
   }
 

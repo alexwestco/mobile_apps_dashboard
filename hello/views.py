@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from faker import Faker
 import random
 from .models import *
+from rest_framework import generics
+from hello.serializers import AppDownloadSerializer
 
 def index(request):
     return render(request, "index.html")
@@ -11,6 +13,11 @@ def index(request):
 
 def dashboard(request):
     return render(request, "dashboard.html")
+
+
+class AppDownloadListCreate(generics.ListCreateAPIView):
+    queryset = AppDownload.objects.all().order_by('downloaded_at')
+    serializer_class = AppDownloadSerializer
 
 
 def seed_database(request):
@@ -32,9 +39,9 @@ def seed_database(request):
 
         # 50% change for both apps
         if random.choice([0,1]) == 0:
-            app_download.app_id = 'IOS ALERT'
+            app_download.app_id = 'IOS_ALERT'
         else:
-            app_download.app_id = 'IOS MATE'
+            app_download.app_id = 'IOS_MATE'
 
         app_download.save()
 
