@@ -1,15 +1,17 @@
-# Python: Getting Started
+# Mobile App Analytics Dashboard
 
-A barebones Django app, which can easily be deployed to Heroku.
+A Django and Bootstrap 4 project
 
-This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
+## Installation
 
-## Running Locally
+Make sure you have Python 3.7 [installed locally](http://install.python-guide.org), as well as [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
 
-Make sure you have Python 3.7 [installed locally](http://install.python-guide.org). To push to Heroku, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), as well as [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+
 
 ```sh
-$ git clone https://github.com/heroku/python-getting-started.git
+
+$ git clone https://github.com/alexandersideris/mobile_apps_dashboard.git
+
 $ cd python-getting-started
 
 $ python3 -m venv getting-started
@@ -18,28 +20,29 @@ $ pip install -r requirements.txt
 $ createdb python_getting_started
 
 $ python manage.py migrate
+
 $ python manage.py collectstatic
 
-$ heroku local
+$ python manage.py runserver
+
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```sh
-$ heroku create
-$ git push heroku master
-
-$ heroku run python manage.py migrate
-$ heroku open
-```
-or
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Your app should now be running on [localhost:8000](http://localhost:8000/).
 
 ## Documentation
 
-For more information about using Python on Heroku, see these Dev Center articles:
+This is the assignment and testable working solution for the Full Stack Developer position. It is also available in a live environment at https://mobile-downloads-dashboard.herokuapp.com/
 
-- [Python on Heroku](https://devcenter.heroku.com/categories/python)
+### What to do
+
+- View the dashboard
+
+View the dashboard by visiting "localhost:8000/dashboard"
+
+- Seed the database
+
+Populate the database by visiting "localhost:8000/seed_database"
+
+- Check real time updating
+
+The dashboard updates in real time. To see it in action, keep the dashboard open in one window and seed the database in a different window. Notice how the dashboard updates automatically
