@@ -132,7 +132,7 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [120, 60, 60, 540, 21, 330, 220, 100, 40, 90, 123, 656]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }]
       },
       options: {
@@ -211,18 +211,11 @@ demo = {
       type: 'pie',
       responsive: true,
       data: {
-      labels: ["UK", "Germany", "Spain", "Puerto Rico", "Yellow", "Red", "Black"],
+      labels: [],
       datasets: [{
         backgroundColor: [
-          "#2ecc71",
-          "#3498db",
-          "#95a5a6",
-          "#9b59b6",
-          "#f1c40f",
-          "#e74c3c",
-          "#34495e"
         ],
-        data: [12, 19, 3, 17, 28, 24, 7, 98, 99, 87]
+        data: [0, 0, 0, 0, 0, 0, 0, 0,0, 0]
         }]
       },
       options: gradientChartOptionsConfiguration
@@ -256,7 +249,7 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+          data: [0, 0, 0, 0, 0, 0, 0, 0]
         }]
       },
       options: gradientChartOptionsConfigurationWithNumbersAndGrid
@@ -290,7 +283,7 @@ demo = {
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: true
-          data: [65, 59, 80, 81, 56, 55, 40, 34,60,55,30,78],
+          data: [0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0],
           spanGaps: true,
         }, {
           label: "IOS_MATE",
@@ -310,7 +303,7 @@ demo = {
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: false
-          data: [10, 20, 60, 95, 64, 78, 90,66,70,40,70,89],
+          data: [0, 0, 0, 0, 0, 0, 0,0,0,0,0,0],
           spanGaps: false,
         }
 

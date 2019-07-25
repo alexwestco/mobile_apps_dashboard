@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib import admin
-from geopy.geocoders import Nominatim
-geolocator = Nominatim()
 
 # Create your models here.
 class AppDownload(models.Model):

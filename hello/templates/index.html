@@ -1,58 +1,133 @@
-{% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Empatica | Mobile App Dashboard
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- CSS Files -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/now-ui-dashboard.css' %}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
+</head>
 
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="{% static 'lang-logo.png'%}">
-    </a>
-    <h1>Getting Started with Python on Heroku</h1>
-    <p>This is a sample Python application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-python"><span class="glyphicon glyphicon-flash"></span> Getting Started with Python</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/python-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-  </div>
-</div>
-<div class="container">
-  <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-python" class="alert-link">Getting Started with Python on Heroku</a> tutorial.
-  </div>
+<body style="text-align: center; margin-left: 15%; margin-right: 15%;">
+  <h2 style="margin-top: 40px;">Empatica Mobile App Dashboard <span style="color: lightblue"><i class="fas fa-wave-square"></i></span></h2>
+  <p style="color: grey">This is the assignment and testable working solution for the Full Stack Developer position at Empatica. It is also available in a live environment <a href="https://mobile-downloads-dashboard.herokuapp.com">here</a>
+  </p>
+  <br>
   <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/python-getting-started">Heroku Button</a> on the repository.</li>
+  <br>
+  
+  <h3 style="margin-bottom: 0px;">Instructions</h3>
+  
+  <br><br>
+  
+  <p style="color: black"><u>View the dashboard</u> 
+  </p>
+  <p style="color: grey">Click <a href="/dashboard">here</a> to go to the dashboard. It is responsive and works on all device screen sizes. Notice that the charts are all useless as there is no data in the database yet. In this example, the date is 31/12/2019 and we are looking at the downloads of 2019</p>
 
-        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/python-getting-started/blob/master/Pipfile">Pipfile</a>, creating a deployable slug.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-      <ul>
-        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-python">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
-        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-        <ul>
-          <li><code>git clone https://github.com/heroku/python-getting-started.git</code> - this will create a local copy of the source code for the app</li>
-          <li><code>cd python-getting-started</code> - change directory into the local source code repository</li>
-          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
-          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-python#push-local-changes">deploy changes</a> to Heroku</li>
-        </ul>
-      </ul>
-      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-python">Getting Started with Python on Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/django-app-configuration">Configuring Django Apps for Heroku</a></li>
-      </ul>
-    </div>
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
-  </div>
-</div>
-{% endblock %}
+  <br>
+
+  <p style="color: black"><u>Seed the database</u> 
+  </p>
+  <p style="color: grey">Click <a href="/seed_database">here</a> or add 'localhost:8000/seed_database' in your search bar and hit enter. You will be then redirected to the dashboard</p>
+ 
+  <br>
+  <p style="color: black"><u>Check real time updating</u> 
+  </p>
+
+  <p style="color: grey">The dashboard updates in real time. To see it in action, keep the <a href="/dashboard">dashboard</a> open in one window and <a href="/seed_database">seed the database</a> once again in a different window. Notice how the dashboard updates automatically</p>
+  <br>
+  <hr>
+  <br>
+
+  <h3 style="margin-bottom: 0px;">Back end</h3>
+  <img src="https://i0.wp.com/procodetech.com/wp-content/uploads/2019/03/DQmVBZLbc1SxH38VQi41nN8b5qa9zbRQ1SR6eanB3F9hWtk.png" style="height:100px;">
+
+  <p style="color: grey">For the backend I normally use Ruby on Rails. But since the allowed languages were Python, Go and Php I went with what was more familiar to me. I chose Python and Django, since it's a language and framework I have used in the past. I did not have many problems setting it up
+  </p>
+  <p style="color: black"><u>Set up</u> 
+  </p>
+  <p style="color: grey">Setting up Django was fairly simple, I got the barebones Django app template from Heroku <a href="https://github.com/heroku/python-getting-started">here</a> and worked on from there, creating the models, turning the backend into a REST API and populating the database. 
+  </p>
+  <br>
+  <p style="color: black"><u>Models</u> 
+  </p>
+  <p style="color: grey">We only have one model in the database, called AppDownload. It can be found in models.py and it's fields are longitude, latitude, app_id, downloaded_at and country. 
+  </p>
+  <br>
+  <p style="color: black"><u>REST API</u></p>
+  <p style="color: grey">I used <a target="_blank" href="https://www.django-rest-framework.org/">django-rest-framework</a> to easily turn our backend into a REST API. With this package, I was able to receive GET requests and send back our data in JSON format, you can try it <a target="_blank" href="/api/app_download">here</a></p>
+  <br>
+  <p style="color: black"><u>Populating the database</u></p>
+  <p style="color: grey">I used the package <a target="_blank" href="https://github.com/joke2k/faker">Faker</a> to easily populate the database and be able to visualize a real case scenario of the dashboard, I needed to create fake data. I used the popular package called faker. The method that populates the database can be found in hello/views.py and is called 'seed_database'</p>
+  <br>
+  <hr>
+  <br>
+  <h3>Front end</h3>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBVkt4uCRD7Dmexcr2fAJdlevVmIgc6yjA3FMQWZC57DRcN_wV" style="height:100px;">
+  <br><br>
+  <p style="color: grey">For the front end I really went minimal. I weighed the options of using a javascript framework like React, Angular or Vue but I decided it would be overkill for this simple project and would end up making it far too complex than needed. I finally decided to go with Twitter Bootstrap 4 and jQuery for the front end. I believe that now the code is super easy to understand, maintain and evolve
+  </p>
+  <p style="color: black"><u>Set up</u> 
+  </p>
+  <p style="color: grey">Setting up the front end was fairly simple, I got a HTML5 - Bootstrap 4 - jQuery dashboard <a href="https://www.creative-tim.com/product/now-ui-dashboard">template</a> from a popular website called Creative Time, and worked on from there. I removed many things from the template and set up the charts.
+  </p>
+  
+  <br>
+
+  <p style="color: black"><u>Get the data</u></p>
+  <p style="color: grey">We all know jQuery. With this library we can easily send GET requests to the backend and receive and parse the JSON response, you can try it <a target="_blank" href="/api/app_download">here</a></p>
+  <br>
+  <p style="color: black"><u>Charts</u></p>
+  <p style="color: grey">The template we used uses a great javascript library to create beautiful charts, called <a target="_blank" href="https://www.chartjs.org/">Chart JS</a>. With the data we got from the GET request, we can now feed the charts and visualize the data in the database.</p>
+  <br>
+  <p style="color: black"><u>Expansion</u></p>
+  <p style="color: grey">It was very easy to make the dashboard update in real time. All I did was run the main javascript method that requests the data from the backend and updates the charts run every 5 seconds. It might not be the best solution, but it works really well. Depending to how critical this is to us, we could run the method even every second. The backend would probably not have a crazy load since this is an internal tool and not some software running in thousands of devices</p>
+  <br><br>
+  <p style="color: grey">(All the code for the GET request, the chart creation and updating can be found in the script tag at the bottom of dashboard.html)</p>
+
+  <br>
+  <hr>
+  <h4>Evaluation</h4>
+  <br>
+  <p style="color: black"><u>Architecture</u>
+  </p>
+  <p style="color: grey">
+    The simple full stack Django app might not be as appealing as a decoupled Django - React app, but for the size of the project I believe it's the best solution. The files are very few, the dependencies even fewer and the code is simple and readable.
+  </p>
+
+  <br>
+  <p style="color: black"><u>Code quality</u>
+  </p>
+  <p style="color: grey">
+    It's not hard to write Python code that is easy to read. I kept the code super simple and didn't use any crazy one-line expressions, which are possible with Python. It might not be the fastest code in the world, but it's a mere dashboard, so I went for readability over milliseconds speed.
+  </p>
+
+  <br>
+  <p style="color: black"><u>Maintainability</u>
+  </p>
+  <p style="color: grey">
+    Very few dependencies were used for this project and no APIs. Everything in the front end is done through three simple libraries (Bootstrap, jQuery & ChartJS) and in the backend with very few Python packages. The code is easy to understand and written in plain Javascript and Python, no javascript frameworks
+  </p>
+
+  <br>
+  <p style="color: black"><u>Testing</u>
+  </p>
+  <p style="color: grey">
+    The solution was tested on the major browsers, Chrome and Firefox
+  </p>
+
+</body>
+</html>

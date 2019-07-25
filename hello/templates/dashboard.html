@@ -17,7 +17,6 @@
   <!-- CSS Files -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
   <link href="{% static 'css/now-ui-dashboard.css' %}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
 </head>
 
@@ -143,7 +142,7 @@
                         Location
                       </th>
                     </thead>
-                    <tbody>
+                    <tbody id="live_feed_body">
                       
                     </tbody>
                   </table>
@@ -194,6 +193,9 @@
         number_of_downloads_per_hour = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         var countries = {};
+        number_of_downloads_per_country = []
+        colors_of_countries = []
+        labels_of_countries = []
 
         for(i =0; i<data.length; i++){
 
@@ -256,16 +258,15 @@
           labels_of_countries.push('Other')
 
 
-          // For the live feed, all we need is the first five downloads that the server returns
+          // For the live feed, all we need is clear the table and add the first five downloads that the server returns
           latest_downloads = []
           var html = ''
           if(i<5){
+            if(i==0){              
+              $('#live_feed_body').empty();
+            }
             html = '<tr style="color:grey"><td>' + data[i]['app_id'] + '</td><td>' + data[i]['downloaded_at'].split('T')[0] + '</td><td>' + data[i]['downloaded_at'].split('T')[1] + '</td><td>' + data[i]['country'] + '</td></tr>';
-
-            latest_downloads.push(html)
-          }else if(i==5){
-            $('#live_feed tr:last').empty()
-            $('#live_feed tr:last').after(html);
+            $('#live_feed_body').append(html);
           }
 
         }
