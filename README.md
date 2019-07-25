@@ -35,7 +35,9 @@ This is the assignment and testable working solution for the Full Stack Develope
 
 ### What to do
 
-- Read the thoughts and reasoning behind the technical decisions by visiting [localhost:8000/dashboard](localhost:8000/) or [https://mobile-downloads-dashboard.herokuapp.com/dashboard](https://mobile-downloads-dashboard.herokuapp.com/) in a live environment
+- Read the reasoning behind tech decisions
+
+Read the thoughts and reasoning behind the technical decisions I had to make by visiting [localhost:8000/](localhost:8000/) or [https://mobile-downloads-dashboard.herokuapp.com/](https://mobile-downloads-dashboard.herokuapp.com/) in a live environment
 
 - View the dashboard
 
