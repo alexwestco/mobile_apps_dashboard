@@ -35,7 +35,6 @@ def seed_database(request):
         app_download.longitude = location[0]
         app_download.latitude = location[1]
         app_download.country = countries[location[3]]
-        app_download.continent = location[4].split("/")[0]
 
         # 50% change for both apps
         if random.choice([0,1]) == 0:

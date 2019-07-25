@@ -10,10 +10,9 @@ class AppDownload(models.Model):
 	app_id = models.CharField(max_length=100)
 	downloaded_at = models.DateTimeField("date downloaded")
 	country = models.CharField(max_length=100, default="")
-	continent = models.CharField(max_length=100, default="")
 
 	def __str__(self):
-		s = self.app_id + ': ' + str(self.downloaded_at.day) + '/' + str(self.downloaded_at.month) + '/' + str(self.downloaded_at.year) + ' ' + str(self.downloaded_at.hour) + ':' + str(self.downloaded_at.minute)
+		s = self.app_id + ' - ' + str(self.country) + ' - ' + str(self.downloaded_at.day) + '/' + str(self.downloaded_at.month) + '/' + str(self.downloaded_at.year) + ' - ' + str(self.downloaded_at.hour) + ':' + str(self.downloaded_at.minute)
 		return s
 
 admin.site.register(AppDownload)

@@ -181,14 +181,7 @@
   <script src="{% static 'demo/demo.js' %}"></script>
 
   <script>
-    $(document).ready(function() {
-
-      // Javascript method's body can be found in assets/js/demos.js
-      charts = demo.initDashboardPageCharts();
-
-      //console.log(charts)
-
-      // Run every 10 seconds
+    function update_charts(charts){
       
       // GET request to server, fetch all the downloads
       $.get( "/api/app_download", function( data ) {
@@ -263,12 +256,15 @@
           labels_of_countries.push('Other')
 
 
-          // For the live feed, all we need is the last five downloads
+          // For the live feed, all we need is the first five downloads that the server returns
           latest_downloads = []
+          var html = ''
           if(i<5){
-            html = '<tr style="color:grey"><td>' + data[i]['app_id'] + '</td><td>' + data[i]['downloaded_at'].split('T')[0] + '</td><td>' + data[i]['downloaded_at'].split('T')[1] + '</td><td>' + data[i]['country'] + '/' + data[i]['continent'] + '</td></tr>';
+            html = '<tr style="color:grey"><td>' + data[i]['app_id'] + '</td><td>' + data[i]['downloaded_at'].split('T')[0] + '</td><td>' + data[i]['downloaded_at'].split('T')[1] + '</td><td>' + data[i]['country'] + '</td></tr>';
 
             latest_downloads.push(html)
+          }else if(i==5){
+            $('#live_feed tr:last').empty()
             $('#live_feed tr:last').after(html);
           }
 
@@ -299,8 +295,24 @@
 
       });
 
+    }
+    $(document).ready(function() {
+      // Get the charts
+      charts = demo.initDashboardPageCharts();
+
+      //console.log(charts)
+
+      // Update the charts for the first time
+      update_charts(charts)
+
+      // Now run every 10 seconds
+      window.setInterval(function(){
+        update_charts(charts)
+      }, 5000);
+
     });
   </script>
+
 </body>
 
 </html>
