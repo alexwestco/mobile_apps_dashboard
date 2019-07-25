@@ -37,11 +37,11 @@ This is the assignment and testable working solution for the Full Stack Develope
 
 - View the dashboard
 
-View the dashboard by visiting "localhost:8000/dashboard"
+View the dashboard by visiting [localhost:8000/dashboard](localhost:8000/dashboard) or [https://mobile-downloads-dashboard.herokuapp.com/dashboard](https://mobile-downloads-dashboard.herokuapp.com/dashboard) in a live environment
 
 - Seed the database
 
-Populate the database by visiting "localhost:8000/seed_database"
+Populate the database by visiting [localhost:8000/seed_database](localhost:8000/seed_database) or [https://mobile-downloads-dashboard.herokuapp.com/seed_database](https://mobile-downloads-dashboard.herokuapp.com/seed_database) in a live environment
 
 - Check real time updating
 
