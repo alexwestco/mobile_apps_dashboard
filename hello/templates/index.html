@@ -49,6 +49,7 @@
   </p>
 
   <p style="color: grey">The dashboard updates in real time. To see it in action, keep the <a href="/dashboard">dashboard</a> open in one window and <a href="/seed_database">seed the database</a> once again in a different window. Notice how the dashboard updates automatically</p>
+
   <br>
   <hr>
   <br>
@@ -73,6 +74,14 @@
   <br>
   <p style="color: black"><u>Populating the database</u></p>
   <p style="color: grey">I used the package <a target="_blank" href="https://github.com/joke2k/faker">Faker</a> to easily populate the database and be able to visualize a real case scenario of the dashboard, I needed to create fake data. I used the popular package called faker. The method that populates the database can be found in hello/views.py and is called 'seed_database'</p>
+
+  <br>
+  <p style="color: black"><u>Running tests</u> 
+  </p>
+
+  <p style="color: grey">There are some tests that test the base functionality of the app. Meaning, visiting the home page, visiting the dashboard and populating the database. The tests can be found in /hello/tests.py and you can run them by running the command <i>"./manage.py test hello"</i></p>
+
+
   <br>
   <hr>
   <br>
@@ -127,7 +136,7 @@
   <p style="color: black"><u>Testing</u>
   </p>
   <p style="color: grey">
-    The solution was tested on the major browsers, Chrome and Firefox. I felt that writting unit tests was not needed since the backend in this demo only returns a JSON array and the front end just displays it. The data is even feeded to the backend. Django built-in code (models, views, etc) and Python built-in functions are already being tested for us. Here, we don't have any custom method to a Django model or custom views.
+    The solution was tested on the major browsers, Chrome and Firefox. Django's built-in code (models, views, etc) and Python built-in functions are already being tested for us. Here, we don't have any custom method to a Django model or custom views, so I only built a test that will test the most common use case, visiting the homepage, seeding the database and viewing the database.
   </p>
 
 </body>

@@ -1,19 +1,36 @@
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import TestCase, RequestFactory
 
-from .views import index
+from .views import *
 
 
 class SimpleTest(TestCase):
     def setUp(self):
-        # Every test needs access to the request factory.
         self.factory = RequestFactory()
 
-    def test_details(self):
-        # Create an instance of a GET request.
+    def test_home_page(self):
+        # User goes to home page
         request = self.factory.get("/")
         request.user = AnonymousUser()
 
-        # Test my_view() as if it were deployed at /customer/details
+        # Test if the home page responds correctly
         response = index(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_seed_database(self):
+        # Seed the database and check if it redirects us to the dashboard
+        request = self.factory.get("/seed_database")
+        request.user = AnonymousUser()
+
+        # Check if it redirects us to the dashboard
+        response = seed_database(request)
+        self.assertEqual(response.status_code, 302)
+
+    def test_dashboard(self):
+        # Seed the database and check if it redirects us to the dashboard
+        request = self.factory.get("/dashboard")
+        request.user = AnonymousUser()
+
+        # Check if it redirects us to the dashboard
+        response = dashboard(request)
         self.assertEqual(response.status_code, 200)

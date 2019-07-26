@@ -29,6 +29,12 @@ $ python manage.py runserver
 
 Your app should now be running on [localhost:8000](http://localhost:8000/).
 
+To run the tests run the following command
+
+```sh
+$ ./manage.py test hello
+```
+
 ## Documentation
 
 This is the assignment and testable working solution for the Full Stack Developer position. It is also available in a live environment at https://mobile-downloads-dashboard.herokuapp.com/
