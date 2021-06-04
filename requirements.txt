@@ -1,4 +1,4 @@
-Django==2.2.3
+Django==2.2.21
 djangorestframework==3.10.1
 Faker==2.0.0
 gunicorn==19.9.0
